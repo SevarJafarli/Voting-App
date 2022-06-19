@@ -29,18 +29,21 @@ class VotingResponse {
         this.description,
         this.imageUrl,
         this.contestants,
+        this.numOfVotes
     });
 
     final String? name;
     final String? description;
     final String? imageUrl;
     final List<Contestant>? contestants;
+    final int? numOfVotes;
 
     factory VotingResponse.fromJson(Map<String, dynamic> json) => VotingResponse(
         name: json["name"] == null ? null : json["name"],
         description: json["description"] == null ? null : json["description"],
         imageUrl: json["imageUrl"] == null ? null : json["imageUrl"],
         contestants: json["contestants"] == null ? null : List<Contestant>.from(json["contestants"].map((x) => Contestant.fromJson(x))),
+        numOfVotes: json["numOfVotes"] == null ? null : json["numOfVotes"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -48,6 +51,7 @@ class VotingResponse {
         "description": description == null ? null : description,
         "imageUrl": imageUrl == null ? null : imageUrl,
         "contestants": contestants == null ? null : List<dynamic>.from(contestants!.map((x) => x.toJson())),
+        "numOfVotes": numOfVotes == null ? null : numOfVotes,
     };
 }
 

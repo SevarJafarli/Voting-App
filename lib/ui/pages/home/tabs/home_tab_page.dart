@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:voting_app_demo/ui/widgets/blocks/active_votings_block.dart';
 import 'package:voting_app_demo/ui/widgets/blocks/popular_votings_block.dart';
+import 'package:voting_app_demo/ui/widgets/blocks/top_categories_block.dart';
 
 class HomeTabPage extends StatelessWidget {
   static final String route = "/home_tab";
@@ -12,6 +13,7 @@ class HomeTabPage extends StatelessWidget {
       backgroundColor: Colors.grey[100],
       appBar: _buildAppBar(),
       body: _buildContent(),
+     
     );
   }
 
@@ -27,19 +29,7 @@ class HomeTabPage extends StatelessWidget {
               "Home",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-            Row(
-              children: [
-                Icon(Icons.notifications_rounded, color: Colors.blue[700], size: 28),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: CircleAvatar(
-                    radius: 18.0,
-                    backgroundImage: NetworkImage('https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=800'),
-                    backgroundColor: Colors.transparent,
-                  ),
-                ),
-              ],
-            ),
+         
           ],
         ),
       ),
@@ -55,7 +45,9 @@ class HomeTabPage extends StatelessWidget {
         SizedBox(
           height: 12,
         ),
-        TopCategoriesBlock(),
+        TopCategoriesBlock(),   SizedBox(
+          height: 24,
+        ),
         PopularVotingsBlock(),
           SizedBox(
           height: 16,

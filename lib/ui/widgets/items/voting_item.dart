@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:voting_app_demo/models/responses/voting_model.dart';
@@ -36,7 +34,48 @@ class VotingItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(votingModel.name ?? "", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    width: 220,
+                    child: Text(
+                      votingModel.name ?? "",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.people_rounded,
+                        color: Color(0xFF5A7CFF),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 3.0),
+                        child: Text(
+                          "${votingModel.numOfVotes} Voters",
+                          style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w700,),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(
+                        Icons.done_rounded,
+                        color: Color(0xFFFFC860),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 3.0),
+                        child: Text(
+                          "${votingModel.contestants?.length} Options",
+                          style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
+                  ),
                   SizedBox(
                     height: 12,
                   ),

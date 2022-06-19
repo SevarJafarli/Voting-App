@@ -11,8 +11,8 @@ class SearchTabPage extends StatefulWidget {
 class _SearchTabPageState extends State<SearchTabPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(),
     );
   }
 }

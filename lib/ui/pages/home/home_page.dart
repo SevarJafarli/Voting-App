@@ -48,7 +48,10 @@ class _HomePageState extends State<HomePage> {
             if (tab == currentTab) {
               navigatorKeys[tab]!.currentState!.popUntil((route) => route.isFirst);
             }
-            navigationProvider.navigate(tab);
+            setState(() {
+              currentTab =tab
+;            });
+            // navigationProvider.navigate(tab);
           },
         ),
         body: buildContent(),
@@ -57,7 +60,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildContent() {
-   
     return Stack(
       children: [
         _buildHomeTab(),
@@ -80,15 +82,15 @@ class _HomePageState extends State<HomePage> {
               if (routeSettings.name == HomeTabPage.route) {
                 return HomeTabPage();
               }
-              if(routeSettings.name == VotePage.route){
-                  final Map json = routeSettings.arguments as Map? ?? {};
+              if (routeSettings.name == VotePage.route) {
+                final Map json = routeSettings.arguments as Map? ?? {};
 
-///todo
-              VotingResponse votingModel = json["voteModel"];
-             
-              return VotePage(
-               votingModel: votingModel,
-              );
+                ///todo
+                VotingResponse votingModel = json["voteModel"];
+
+                return VotePage(
+                  votingModel: votingModel,
+                );
               }
               return HomeTabPage();
             });

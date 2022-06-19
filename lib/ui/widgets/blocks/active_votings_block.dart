@@ -1,16 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:voting_app_demo/models/responses/contestant_response.dart';
 import 'package:voting_app_demo/models/responses/voting_model.dart';
+import 'package:voting_app_demo/ui/widgets/blocks/app_block.dart';
 import 'package:voting_app_demo/ui/widgets/items/voting_item.dart';
 
-class ActiveVotingsBlock extends StatelessWidget {
-  const ActiveVotingsBlock({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-  var fakeJson = '''[
+class ActiveVotingsBlock extends AppBlock {
+  static String fakeJson = '''[
       {
         "name": "Voting 1",
         "description": "Des 1",
@@ -18,7 +14,8 @@ class ActiveVotingsBlock extends StatelessWidget {
         "contestants": [
           {"name": "Contestant 1", "event": "Event", "numOfVotes": 1},
           {"name": "Contestant 2", "event": "Event 2", "numOfVotes": 2}
-        ]
+        ],
+        "numOfVotes":2
       },
       {
         "name": "Voting 1",
@@ -27,57 +24,33 @@ class ActiveVotingsBlock extends StatelessWidget {
         "contestants": [
           {"name": "Contestant 1", "event": "Event", "numOfVotes": 1},
           {"name": "Contestant 2", "event": "Event 2", "numOfVotes": 2}
-        ]
+        ],
+         "numOfVotes":4
       }
     ]''';
 
-    List<VotingResponse> activeVotings= List<VotingResponse>.from(json.decode(fakeJson).map((x) => VotingResponse.fromJson(x)));
+  List<VotingResponse> activeVotings = List<VotingResponse>.from(json.decode(fakeJson).map((x) => VotingResponse.fromJson(x)));
+  @override
+  Widget buildContent() {
     return Container(
-        child: Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 20,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Active Voting",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  "SEE ALL",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.blueGrey[600],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        Container(
-          height: 260,
-          child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              itemCount: activeVotings.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return VotingItem(votingModel: activeVotings[index]);
-              }),
-        )
-      ],
-    ));
+      height: 282,
+      child: ListView.builder(
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          itemCount: activeVotings.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return VotingItem(votingModel: activeVotings[index]);
+          }),
+    );
+  }
+
+  @override
+  void onTap() {
+    print("tapped");
+  }
+
+  @override
+  String title() {
+    return "Active Voting";
   }
 }
