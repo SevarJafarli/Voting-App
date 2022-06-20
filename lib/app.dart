@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:voting_app_demo/providers/navigation_provider.dart';
+import 'package:voting_app_demo/ui/pages/personal_info_page.dart';
+import 'package:voting_app_demo/ui/pages/settings_page.dart';
 import 'package:voting_app_demo/wrapper.dart';
 
 class VotingApp extends StatelessWidget {
@@ -17,6 +19,10 @@ class VotingApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Voting App",
+        routes: <String, WidgetBuilder>{
+           SettingsPage.route:(BuildContext context) => SettingsPage(),
+            PersonalInfoPage.route:(BuildContext context) => PersonalInfoPage(),
+        },
         home: Wrapper(),
       ),
     );
